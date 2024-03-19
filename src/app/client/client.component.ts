@@ -20,6 +20,10 @@ export class ClientComponent {
       course : [''],
     });
   }
+
+  save(){
+    this.students.push(this.formGroupStudents.value);
+  }
   
 }
 
