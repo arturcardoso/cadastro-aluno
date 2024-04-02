@@ -1,29 +1,24 @@
 {
   "students": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Artur",
-      "course": "Computação"
+      "course": "ADS"
     },
     {
-      "id": "2",
-      "name": "Joao",
-      "course": "Eventos"
+      "id": 2,
+      "name": "Agda",
+      "course": "Gastronomia"
     },
     {
-      "id": "3",
-      "name": "Maria",
-      "course": "Contabilidade"
+      "id": 3,
+      "name": "Wallace",
+      "course": "Tattoo"
     },
     {
-      "id": "4",
-      "name": "1",
-      "course": "1"
-    },
-    {
-      "id": "512",
-      "name": "Simas ",
-      "course": "Turbo"
+      "id": 4,
+      "name": "Magno",
+      "course": "Marcenaria"
     }
   ]
 }
