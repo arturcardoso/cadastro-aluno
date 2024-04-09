@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../student';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentService } from '../student.service';
 
 @Component({
@@ -12,7 +12,8 @@ export class StudentsComponent implements OnInit {
   students: Student[] = [];
 
   formGroupStudents: FormGroup;
-  isEditing: boolean=false;
+  isEditing: boolean = false;
+  submited: boolean = false;
 
   ngOnInit(): void {
     this.loadStudents();
@@ -25,41 +26,62 @@ export class StudentsComponent implements OnInit {
   }
 
   constructor(private formBuilder: FormBuilder,
-              private service: StudentService){
-    this.formGroupStudents =formBuilder.group({
-      id : [''],
-      name : [''],
-      course : [''],
+    private service: StudentService) {
+    this.formGroupStudents = formBuilder.group({
+      id: [''],
+      name: ['', [Validators.minLength(3), Validators.required]],
+      course: ['', [Validators.required]],
     });
   }
-  
 
-  save(){
-    if(this.isEditing){
-      this.service.update(this.formGroupStudents.value).subscribe({
-        next : () => {
-          this.loadStudents();
-          this.isEditing = false;
-        }
-      })
-    }
 
-    else{
-    this.service.save(this.formGroupStudents.value).subscribe({
-      next: data => this.students.push(data)
-    });
+  save() {
+
+    if (this.formGroupStudents.valid) {
+      if (this.isEditing) {
+        this.service.update(this.formGroupStudents.value).subscribe({
+          next: () => {
+            this.loadStudents();
+            this.isEditing = false;
+            this.submited = true;
+          }
+        })
+      }
+
+      else {
+
+        this.service.save(this.formGroupStudents.value).subscribe({
+          next: (data) => {
+            this.students.push(data);
+            this.submited = false;
+          }
+        })
+      }
     }
-  this.formGroupStudents.reset();
+    this.formGroupStudents.reset()
   }
 
-  delete(student: Student){
+  delete(student: Student) {
     this.service.delete(student).subscribe({
       next: () => this.loadStudents()
     })
   }
 
-  edit(student:Student){
+  edit(student: Student) {
     this.formGroupStudents.setValue(student);
     this.isEditing = true;
   }
+
+  get name(): any {
+    return this.formGroupStudents.get("name");
+  }
+  get course(): any {
+    return this.formGroupStudents.get("course");
+  }
+
+
+
+
+
+
 }
