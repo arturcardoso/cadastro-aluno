@@ -3,22 +3,27 @@
     {
       "id": 1,
       "name": "Artur",
-      "course": "ADS"
+      "course": "Análise e Desenvolvimento de Sistemas"
     },
     {
       "id": 2,
       "name": "Agda",
-      "course": "Gastronomia"
+      "course": "Cabelereiro"
     },
     {
       "id": 3,
-      "name": "Wallace",
-      "course": "Tattoo"
+      "name": "José",
+      "course": "Motorista"
     },
     {
       "id": 4,
       "name": "Magno",
       "course": "Marcenaria"
+    },
+    {
+      "id": 5,
+      "name": "Wallace",
+      "course": "Tatuador"
     }
   ]
 }
